@@ -1,6 +1,5 @@
-version: '3'
+version: "3"
 services:
-
   # nginx
   nginx:
     image: nginx:stable-alpine
@@ -15,6 +14,6 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./services/backend-node:/usr/src/app
-    command: [sh, -c, npm i && npm run start]
+    command: [sh, -c, npm i && npm run dev]
     ports:
       - 3001:3001
