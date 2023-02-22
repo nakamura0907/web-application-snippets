@@ -1,0 +1,20 @@
+version: '3'
+services:
+
+  # nginx
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./services/nginx/dev/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+
+  # backend-node
+  backend-node:
+    image: node:current-alpine
+    working_dir: /usr/src/app
+    volumes:
+      - ./services/backend-node:/usr/src/app
+    command: [sh, -c, npm i && npm run start]
+    ports:
+      - 3001:3001
