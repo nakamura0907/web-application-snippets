@@ -1,3 +1,4 @@
 # backend-node
 
-- TypeScriptのビルド＆本番環境用マネージャーの導入(PM2)
+- ~TypeScriptのビルド＆~本番環境用マネージャーの導入(PM2)~
+- Docker環境下でもステップ実行できるようにする
