@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "env-cmd -f .env.development nodemon -L"
+    "dev": "env-cmd -f .env.development nodemon -L",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +24,27 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.json"
+        }
+      ]
+    },
+    "moduleNameMapper": {
+      "@/(.*)$": "<rootDir>/src/$1",
+      "@test/(.*)$": "<rootDir>/__test__/$1",
+      "@config/(.*)$": "<rootDir>/src/config/$1",
+      "@modules/(.*)$": "<rootDir>/src/modules/$1",
+      "@frameworks/(.*)$": "<rootDir>/src/frameworks/$1",
+      "@utils/(.*)$": "<rootDir>/src/utils/$1"
+    }
   }
 }
