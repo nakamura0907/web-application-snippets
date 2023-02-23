@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "pm2 start ./dist/script.js --name backend-node --watch --error ./log/www-error.log --output ./log/www-out.log --log-date-format \"YYYY-MM-DD HH:mm Z\"",
+    "stop": "pm2 stop all",
     "dev": "env-cmd -f .env.development nodemon -L",
     "test": "jest"
   },
@@ -15,6 +17,7 @@
     "@types/node": "^18.14.0",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
+    "pm2": "^5.2.2",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.7.0",
     "typescript": "^4.9.5",
