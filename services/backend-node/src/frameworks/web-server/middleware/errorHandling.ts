@@ -1,5 +1,6 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import Exception from "@/utils/exception";
+import logger from "@/utils/logger";
 
 type ErrorResponse = {
   message: string;
@@ -7,6 +8,8 @@ type ErrorResponse = {
 
 /**
  * エラーハンドリングミドルウェア
+ *
+ * 内部エラーの場合はログに出力する
  */
 export const errorHandling = (app: Express) => {
   app.use(
@@ -17,7 +20,7 @@ export const errorHandling = (app: Express) => {
       __: NextFunction
     ) => {
       if (error instanceof Exception) {
-        // 必要ならエラーログ出力
+        if (error.isInternalError) logger.error(error.stack || error.message);
 
         const status = error.status;
         const body = {
@@ -27,6 +30,7 @@ export const errorHandling = (app: Express) => {
         res.status(status).send(body);
         return;
       }
+      logger.error(error.stack || error.message);
 
       const status = 500;
       const body = {
@@ -36,4 +40,3 @@ export const errorHandling = (app: Express) => {
     }
   );
 };
-
