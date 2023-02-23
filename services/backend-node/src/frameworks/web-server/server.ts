@@ -1,5 +1,6 @@
 import express from "express";
 import { errorHandling } from "./middleware/errorHandling";
+import { v1Router } from "./router";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use((req, _, next) => {
 app.route("/").get((_, res) => {
   res.status(200).send({ ok: "OK" });
 });
+app.use("/api/v1", v1Router);
 
 // エラーハンドリング
 errorHandling(app);
